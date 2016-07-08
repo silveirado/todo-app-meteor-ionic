@@ -1,0 +1,51 @@
+<ion-view id="tarefas-view" view-title="Minhas Tarefas">
+	<ion-content class="padding">
+		<div class="list">
+			<form name="form" ng-submit="adicionar(tarefa)" novalidate>
+			<label class="item-input">
+				<div class="input-label">
+					Tarefa
+				</div>
+				<input type="text" name="tarefa" placeholder="Tarefa" ng-model="tarefa.texto" required>
+			</label>
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Prioridade
+				</div>
+				<select id="prioridade" name="prioridade" ng-model="tarefa.prioridade" required>
+					<option>Selecione a prioridade</option>
+					<option value="0">Alta</option>
+					<option value="1">Media</option>
+					<option value="2">Baixa</option>
+				</select>
+			</label>
+			<button class="button button-full button-calm" type="submit">
+				Adicionar
+			</button>
+		</form>
+
+		</div>
+		<ion-list>
+			<ion-item class="item-button-right">
+				Tarefas
+				<button class="button button-assertive" ng-click="limpar()">
+      		Limpar
+    		</button>
+			</ion-item>
+			<ion-checkbox
+				collection-repeat="tarefa in tarefas" ng-model="tarefa.concluida"
+				ng-change="atualizar(tarefa)"
+				class="item-icon-right" ng-class="{
+					'tarefa-completa': tarefa.concluida
+				}">
+				{{tarefa.texto}}
+				<i class="icon ion-record" 				ng-class="{
+									'assertive': tarefa.prioridade == 0,
+									'energized': tarefa.prioridade ==1,
+									'balanced': true
+								}"></i>
+			</ion-checkbox>
+		</ion-list>
+
+	</ion-content>
+</ion-view>
